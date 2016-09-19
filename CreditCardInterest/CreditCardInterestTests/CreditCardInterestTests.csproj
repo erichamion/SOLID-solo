@@ -62,9 +62,16 @@
   <ItemGroup>
     <Compile Include="CreditCardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleInterestCalculatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CreditCardInterest\CreditCardInterest.csproj">
+      <Project>{9b77828e-18ff-4fdd-93ad-acb74479a8d3}</Project>
+      <Name>CreditCardInterest</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

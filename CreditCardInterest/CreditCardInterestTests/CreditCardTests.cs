@@ -6,9 +6,9 @@ namespace CreditCardInterest.Tests
     [TestClass]
     public class CreditCardTests
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        //[TestMethod]
+        //public void TestMethod1()
+        //{
+        //}
     }
 }
