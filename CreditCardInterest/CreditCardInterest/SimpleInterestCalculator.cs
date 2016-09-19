@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreditCardInterest
 {
-    public class SimpleInterestCalculator
+    public class SimpleInterestCalculator : IDiscreteInterestCalculator
     {
         public PrincipalInterestBalance CalculateInterest(double startingPrincipal, double ratePerPeriod, int periods)
         {
