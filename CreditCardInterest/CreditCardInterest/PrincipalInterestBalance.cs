@@ -8,6 +8,14 @@ namespace CreditCardInterest
 {
     public class PrincipalInterestBalance
     {
+        public double Total
+        {
+            get
+            {
+                return Interest + Principal;
+            }
+        }
+
         public double Interest { get; set; }
         public double Principal { get; set; }
     }
