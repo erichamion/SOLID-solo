@@ -30,12 +30,12 @@ namespace CreditCardInterest.Tests
         }
 
         [TestMethod]
-        public void SimpleInterestCalculator_CalculateInterestGivesKeepsOriginalPrincipal()
+        public void SimpleInterestCalculator_CalculateInterestGivesZeroNewPrincipal()
         {
             // Arrange
             var startingPrincipal = 100.0;
             var rate = 0.15;
-            var expected = startingPrincipal;
+            var expected = 0.0;
             var target = new SimpleInterestCalculator();
             PrincipalInterestBalance result;
             double actual;

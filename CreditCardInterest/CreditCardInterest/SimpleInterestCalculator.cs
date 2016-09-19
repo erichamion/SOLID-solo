@@ -12,7 +12,7 @@ namespace CreditCardInterest
         {
             return new PrincipalInterestBalance {
                 Interest = startingPrincipal * ratePerPeriod * periods,
-                Principal = startingPrincipal
+                Principal = 0
             };
         }
     }

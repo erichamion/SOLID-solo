@@ -16,7 +16,7 @@ namespace CreditCardInterest.Tests
             var periods = 42;
             var principalOut = 27.0;
             var interestOut = 42.0;
-            var expected = principalOut + interestOut;
+            var expected = principalIn + principalOut + interestOut;
             var mockInterestCalculator = new Mock<IDiscreteInterestCalculator>();
             mockInterestCalculator.Setup(x => x.CalculateInterest(principalIn, rateIn, periods)).Returns(new PrincipalInterestBalance { Principal = principalOut, Interest = interestOut });
             var target = new CreditCard("foo", principalIn, 0.1, mockInterestCalculator.Object);

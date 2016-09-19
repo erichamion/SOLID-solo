@@ -9,15 +9,14 @@ namespace CreditCardInterest
     public class CreditCard
     {
         private IDiscreteInterestCalculator _interestCalculator;
-        private double principalIn;
         private readonly double _rate;
         private PrincipalInterestBalance _principalInterestBalance;
 
         public string Name { get; }
         public double Balance { get { return _principalInterestBalance.Total; } }
 
-        public double Principal { get { return _principalInterestBalance.Principal; } }
-        public double Interest { get { return _principalInterestBalance.Interest; } }
+        protected double Principal { get { return _principalInterestBalance.Principal; } }
+        protected double Interest { get { return _principalInterestBalance.Interest; } }
         
         public CreditCard(string name, double startingBalance, double ratePerPeriod, IDiscreteInterestCalculator interestCalculator)
         {
@@ -30,7 +29,7 @@ namespace CreditCardInterest
         
         public void PassTime(int periods)
         {
-            _principalInterestBalance = _interestCalculator.CalculateInterest(Principal, _rate, periods);
+            _principalInterestBalance += _interestCalculator.CalculateInterest(Principal, _rate, periods);
         }
     }
 }
