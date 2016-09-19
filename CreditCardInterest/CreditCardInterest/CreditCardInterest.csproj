@@ -41,7 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CreditCard.cs" />
+    <Compile Include="ICreditCard.cs" />
     <Compile Include="IDiscreteInterestCalculator.cs" />
+    <Compile Include="IInterestBearingAccount.cs" />
+    <Compile Include="ITimeSensitiveAccount.cs" />
     <Compile Include="PrincipalInterestBalance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleInterestCalculator.cs" />

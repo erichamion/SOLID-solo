@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreditCardInterest
 {
-    public class CreditCard
+    public class CreditCard : ICreditCard
     {
         private IDiscreteInterestCalculator _interestCalculator;
         private readonly double _rate;
@@ -15,8 +15,8 @@ namespace CreditCardInterest
         public string Name { get; }
         public double Balance { get { return _principalInterestBalance.Total; } }
 
-        protected double Principal { get { return _principalInterestBalance.Principal; } }
-        protected double Interest { get { return _principalInterestBalance.Interest; } }
+        public double Principal { get { return _principalInterestBalance.Principal; } }
+        public double Interest { get { return _principalInterestBalance.Interest; } }
         
         public CreditCard(string name, double startingBalance, double ratePerPeriod, IDiscreteInterestCalculator interestCalculator)
         {
