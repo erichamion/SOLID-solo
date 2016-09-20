@@ -14,11 +14,11 @@ namespace CreditCardInterest.Tests
         {
             // Arrange
             var periods = 27;
-            var mockData = new List<Mock<ITimeSensitiveAccount>>
+            var mockData = new List<Mock<ICreditCard>>
             {
-                new Mock<ITimeSensitiveAccount>(),
-                new Mock<ITimeSensitiveAccount>(),
-                new Mock<ITimeSensitiveAccount>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
             };
             mockData.ForEach(x => x.Setup(y => y.PassTime(periods)));
             var data = mockData.Select(x => x.Object).ToList();
@@ -35,11 +35,11 @@ namespace CreditCardInterest.Tests
         public void Wallet_BalanceSumsCardBalances()
         {
             // Arrange
-            var mockData = new List<Mock<ITimeSensitiveAccount>>
+            var mockData = new List<Mock<ICreditCard>>
             {
-                new Mock<ITimeSensitiveAccount>(),
-                new Mock<ITimeSensitiveAccount>(),
-                new Mock<ITimeSensitiveAccount>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
             };
             var individualBalance = 27.0;
             var expected = individualBalance * mockData.Count;
@@ -54,6 +54,27 @@ namespace CreditCardInterest.Tests
             // Assert
             mockData.ForEach(x => x.VerifyAll());
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Wallet_Cards()
+        {
+            // Arrange
+            var mockData = new List<Mock<ICreditCard>>
+            {
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+            };
+            var expectedList = mockData.Select(x => x.Object).ToList();
+            var target = new Wallet(expectedList);
+            IList<ICreditCard> actualList;
+
+            // Act
+            actualList = target.Cards;
+
+            // Assert
+            Assert.IsTrue(expectedList.SequenceEqual(actualList));
         }
     }
 }
