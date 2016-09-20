@@ -23,6 +23,22 @@ namespace CreditCardInterest
             }
         }
 
+        public double Interest
+        {
+            get
+            {
+                return _cards.Sum(x => x.Interest);
+            }
+        }
+
+        public double Principal
+        {
+            get
+            {
+                return _cards.Sum(x => x.Principal);
+            }
+        }
+
         public IList<ICreditCard> Cards
         {
             get

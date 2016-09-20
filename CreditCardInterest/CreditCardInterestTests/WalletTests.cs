@@ -57,6 +57,56 @@ namespace CreditCardInterest.Tests
         }
 
         [TestMethod]
+        public void Wallet_InterestSumsCardInterest()
+        {
+            // Arrange
+            var mockData = new List<Mock<ICreditCard>>
+            {
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+            };
+            var individualInterest = 27.0;
+            var expected = individualInterest * mockData.Count;
+            mockData.ForEach(x => x.Setup(y => y.Interest).Returns(individualInterest));
+            var data = mockData.Select(x => x.Object).ToList();
+            var target = new Wallet(data);
+            double actual;
+
+            // Act
+            actual = target.Interest;
+
+            // Assert
+            mockData.ForEach(x => x.VerifyAll());
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Wallet_PrincipalSumsCardPrincipal()
+        {
+            // Arrange
+            var mockData = new List<Mock<ICreditCard>>
+            {
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+                new Mock<ICreditCard>(),
+            };
+            var individualPrincipal = 27.0;
+            var expected = individualPrincipal * mockData.Count;
+            mockData.ForEach(x => x.Setup(y => y.Principal).Returns(individualPrincipal));
+            var data = mockData.Select(x => x.Object).ToList();
+            var target = new Wallet(data);
+            double actual;
+
+            // Act
+            actual = target.Principal;
+
+            // Assert
+            mockData.ForEach(x => x.VerifyAll());
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void Wallet_Cards()
         {
             // Arrange

@@ -2,7 +2,7 @@
 
 namespace CreditCardInterest
 {
-    public interface IWallet : ITimeSensitiveAccount
+    public interface IWallet : IInterestBearingAccount
     {
         IList<ICreditCard> Cards { get; }
     }
