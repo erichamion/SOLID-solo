@@ -43,7 +43,9 @@
     <Compile Include="CreditCard.cs" />
     <Compile Include="ICreditCard.cs" />
     <Compile Include="IDiscreteInterestCalculator.cs" />
+    <Compile Include="IInterestBalanceCollector.cs" />
     <Compile Include="IInterestBearingAccount.cs" />
+    <Compile Include="InterestBalanceCollector.cs" />
     <Compile Include="ITimeSensitiveAccount.cs" />
     <Compile Include="IWallet.cs" />
     <Compile Include="PrincipalInterestBalance.cs" />
