@@ -9,17 +9,22 @@ namespace CreditCardInterest
     public class Wallet : IWallet
     {
         private readonly List<ICreditCard> _cards;
+        private readonly IInterestBalanceCollector _interestBalanceCollector;
 
-        public Wallet(IList<ICreditCard> cards)
+        public Wallet(IList<ICreditCard> cards) : this(cards, new InterestBalanceCollector())
+        { }
+
+        public Wallet(IList<ICreditCard> cards, IInterestBalanceCollector interestBalanceCollector)
         {
             _cards = cards.ToList();
+            this._interestBalanceCollector = interestBalanceCollector;
         }
 
         public double Balance
         {
             get
             {
-                return _cards.Sum(x => x.Balance);
+                return _interestBalanceCollector.GetTotal(_cards, x => x.Balance);
             }
         }
 
@@ -27,7 +32,7 @@ namespace CreditCardInterest
         {
             get
             {
-                return _cards.Sum(x => x.Interest);
+                return _interestBalanceCollector.GetTotal(_cards, x => x.Interest);
             }
         }
 
@@ -35,7 +40,7 @@ namespace CreditCardInterest
         {
             get
             {
-                return _cards.Sum(x => x.Principal);
+                return _interestBalanceCollector.GetTotal(_cards, x => x.Principal);
             }
         }
 

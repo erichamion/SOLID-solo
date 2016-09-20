@@ -32,27 +32,59 @@ namespace CreditCardInterest.Tests
         }
 
         [TestMethod]
-        public void Wallet_BalanceSumsCardBalances()
+        public void Wallet_BalanceUsesInterestBalanceCollector()
         {
             // Arrange
-            var mockData = new List<Mock<ICreditCard>>
-            {
-                new Mock<ICreditCard>(),
-                new Mock<ICreditCard>(),
-                new Mock<ICreditCard>(),
-            };
-            var individualBalance = 27.0;
-            var expected = individualBalance * mockData.Count;
-            mockData.ForEach(x => x.Setup(y => y.Balance).Returns(individualBalance));
-            var data = mockData.Select(x => x.Object).ToList();
-            var target = new Wallet(data);
+            var expected = 27.0;
+            var mockCollector = new Mock<IInterestBalanceCollector>();
+            var data = new List<ICreditCard>();
+            mockCollector.Setup(x => x.GetTotal(data, It.IsAny<Func<ICreditCard, double>>())).Returns(expected);
+            var target = new Wallet(data, mockCollector.Object);
             double actual;
 
             // Act
             actual = target.Balance;
 
             // Assert
-            mockData.ForEach(x => x.VerifyAll());
+            mockCollector.VerifyAll();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Wallet_InterestUsesInterestBalanceCollector()
+        {
+            // Arrange
+            var expected = 27.0;
+            var mockCollector = new Mock<IInterestBalanceCollector>();
+            var data = new List<ICreditCard>();
+            mockCollector.Setup(x => x.GetTotal(data, It.IsAny<Func<ICreditCard, double>>())).Returns(expected);
+            var target = new Wallet(data, mockCollector.Object);
+            double actual;
+
+            // Act
+            actual = target.Interest;
+
+            // Assert
+            mockCollector.VerifyAll();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Wallet_PrincipalUsesInterestBalanceCollector()
+        {
+            // Arrange
+            var expected = 27.0;
+            var mockCollector = new Mock<IInterestBalanceCollector>();
+            var data = new List<ICreditCard>();
+            mockCollector.Setup(x => x.GetTotal(data, It.IsAny<Func<ICreditCard, double>>())).Returns(expected);
+            var target = new Wallet(data, mockCollector.Object);
+            double actual;
+
+            // Act
+            actual = target.Principal;
+
+            // Assert
+            mockCollector.VerifyAll();
             Assert.AreEqual(expected, actual);
         }
 
