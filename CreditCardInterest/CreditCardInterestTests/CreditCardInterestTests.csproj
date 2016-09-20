@@ -61,6 +61,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CreditCardTests.cs" />
+    <Compile Include="GroupTimePasserTests.cs" />
     <Compile Include="InterestBalanceCollectorTests.cs" />
     <Compile Include="PrincipalInterestBalanceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

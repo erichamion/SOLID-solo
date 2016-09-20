@@ -44,6 +44,7 @@
     <Compile Include="CreditCard.cs" />
     <Compile Include="ICreditCard.cs" />
     <Compile Include="IDiscreteInterestCalculator.cs" />
+    <Compile Include="IGroupTimePasser.cs" />
     <Compile Include="IInterestBalanceCollector.cs" />
     <Compile Include="IInterestBearingAccount.cs" />
     <Compile Include="IInterestBearingAccountContainer.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleInterestCalculator.cs" />
     <Compile Include="Person.cs" />
+    <Compile Include="GroupTimePasser.cs" />
     <Compile Include="Wallet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
