@@ -153,7 +153,7 @@ namespace CreditCardInterest.Tests
             IList<ICreditCard> actualList;
 
             // Act
-            actualList = target.Cards;
+            actualList = target.Accounts;
 
             // Assert
             Assert.IsTrue(expectedList.SequenceEqual(actualList));

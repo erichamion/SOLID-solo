@@ -40,11 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractInterestBearingAccountContainer.cs" />
     <Compile Include="CreditCard.cs" />
     <Compile Include="ICreditCard.cs" />
     <Compile Include="IDiscreteInterestCalculator.cs" />
     <Compile Include="IInterestBalanceCollector.cs" />
     <Compile Include="IInterestBearingAccount.cs" />
+    <Compile Include="IInterestBearingAccountContainer.cs" />
     <Compile Include="InterestBalanceCollector.cs" />
     <Compile Include="ITimeSensitiveAccount.cs" />
     <Compile Include="IWallet.cs" />

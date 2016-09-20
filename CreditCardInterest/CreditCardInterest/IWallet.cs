@@ -2,8 +2,8 @@
 
 namespace CreditCardInterest
 {
-    public interface IWallet : IInterestBearingAccount
+    public interface IWallet : IInterestBearingAccountContainer<ICreditCard>
     {
-        IList<ICreditCard> Cards { get; }
+        
     }
 }
