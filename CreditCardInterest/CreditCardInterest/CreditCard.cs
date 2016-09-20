@@ -13,8 +13,7 @@ namespace CreditCardInterest
         private PrincipalInterestBalance _principalInterestBalance;
 
         public string Name { get; }
-        public double Balance { get { return _principalInterestBalance.Total; } }
-
+        
         public double Principal { get { return _principalInterestBalance.Principal; } }
         public double Interest { get { return _principalInterestBalance.Interest; } }
         

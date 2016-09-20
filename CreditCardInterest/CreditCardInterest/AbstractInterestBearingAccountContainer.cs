@@ -18,14 +18,6 @@ namespace CreditCardInterest
             _balanceCollector = balanceCollector;
         }
 
-        public double Balance
-        {
-            get
-            {
-                return _balanceCollector.GetTotal(Accounts, x => x.Balance);
-            }
-        }
-
         public double Interest
         {
             get

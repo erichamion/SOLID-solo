@@ -8,8 +8,6 @@ namespace CreditCardInterest
 {
     public interface ITimeSensitiveAccount
     {
-        double Balance { get; }
-
         void PassTime(int periods);
     }
 }

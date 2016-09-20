@@ -32,25 +32,6 @@ namespace CreditCardInterest.Tests
         }
 
         [TestMethod]
-        public void Person_BalanceUsesInterestBalanceCollector()
-        {
-            // Arrange
-            var expected = 27.0;
-            var mockCollector = new Mock<IInterestBalanceCollector>();
-            var data = new List<IWallet>();
-            mockCollector.Setup(x => x.GetTotal(data, It.IsAny<Func<IWallet, double>>())).Returns(expected);
-            var target = new Person(data, mockCollector.Object);
-            double actual;
-
-            // Act
-            actual = target.Balance;
-
-            // Assert
-            mockCollector.VerifyAll();
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void Person_InterestUsesInterestBalanceCollector()
         {
             // Arrange
