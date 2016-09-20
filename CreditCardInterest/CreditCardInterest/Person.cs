@@ -8,22 +8,33 @@ namespace CreditCardInterest
 {
     public class Person : AbstractInterestBearingAccountContainer<IWallet>, IPerson
     {
-        private List<IWallet> _wallets;
+        private readonly List<IWallet> _wallets;
+        private readonly IGroupTimePasser _timePasser;
 
         public override IList<IWallet> Accounts { get { return _wallets.AsReadOnly(); } }
 
-        public Person(IList<IWallet> wallets) : this(wallets, new InterestBalanceCollector())
+        public Person(IList<IWallet> wallets) : this(wallets, new GroupTimePasser())
         { }
 
-        public Person(IList<IWallet> wallets, IInterestBalanceCollector interestBalanceCollector)
-            : base(interestBalanceCollector)
+        public Person(IList<IWallet> wallets, IGroupTimePasser timePasser)
+            : this(wallets, timePasser, new InterestBalanceCollector())
+        { }
+
+        public Person(IList<IWallet> wallets, IInterestBalanceCollector balanceCollector) 
+            : this(wallets, new GroupTimePasser(), balanceCollector)
+        { }
+            
+
+        public Person(IList<IWallet> wallets, IGroupTimePasser timePasser, IInterestBalanceCollector balanceCollector)
+            : base(balanceCollector)
         {
             _wallets = wallets.ToList();
+            _timePasser = timePasser;
         }
 
         public override void PassTime(int periods)
         {
-            _wallets.ForEach(x => x.PassTime(periods));
+            _timePasser.PassTimeForAll(_wallets, periods);
         }
     }
 }
