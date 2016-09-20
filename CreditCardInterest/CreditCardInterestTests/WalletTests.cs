@@ -10,25 +10,20 @@ namespace CreditCardInterest.Tests
     public class WalletTests
     {
         [TestMethod]
-        public void Wallet_PassTimeCallsAllCardPassTimes()
+        public void Wallet_PassTimeUsesGroupTimePasser()
         {
             // Arrange
             var periods = 27;
-            var mockData = new List<Mock<ICreditCard>>
-            {
-                new Mock<ICreditCard>(),
-                new Mock<ICreditCard>(),
-                new Mock<ICreditCard>(),
-            };
-            mockData.ForEach(x => x.Setup(y => y.PassTime(periods)));
-            var data = mockData.Select(x => x.Object).ToList();
-            var target = new Wallet(data);
+            var data = new List<ICreditCard>();
+            var mockTimePasser = new Mock<IGroupTimePasser>();
+            mockTimePasser.Setup(x => x.PassTimeForAll(data, periods));
+            var target = new Wallet(data, mockTimePasser.Object);
 
             // Act
             target.PassTime(periods);
 
             // Assert
-            mockData.ForEach(x => x.VerifyAll());
+            mockTimePasser.VerifyAll();
         }
 
         [TestMethod]
